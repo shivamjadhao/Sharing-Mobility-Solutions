@@ -1,0 +1,31 @@
+
+body {
+    background-color: #fff; /* white background color */
+	color: #333; /* dark text color */
+	padding: 50px;
+}
+
+    h2 {
+        font-size: 36px;
+        color: #0077cc; /* blue color */
+        margin-bottom: 20px;
+      }
+
+      li {
+        font-size: 18px;
+        line-height: 1.5;
+      }
+
+    .button {
+  background-color: #0077cc;
+  color: black;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: inline-block;
+  transition: all 0.3s ease-in-out;
+}
+
+.button:hover {
+  transform: scale(1.2);
+}

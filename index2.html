@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaflet</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+<!-- Leaflet routing css -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+
+  
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* #map {
+            width: 100%;
+            height: 100vh;
+        } */
+
+        #map {
+        position: relative;
+        width: 1000px; /* set the desired width */
+        height: 500px; /* set the desired height */
+        margin: 0 auto; /* center the map horizontally */
+        }
+
+        .coordinate {
+            position: absolute;
+            bottom: 10px;
+            right: 50%;
+        }
+
+        .leaflet-popup-content-wrapper {
+            background-color: #000000;
+            color: #fff;
+            border: 1px solid red;
+            border-radius: 0px;
+        }
+
+        .container_con{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        gap: 7rem;
+    
+        }
+        .container_con img{
+        height: 250px;
+        width: 250px;
+        }
+
+        .button {
+  background-color: #0077cc;
+  color: black;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: inline-block;
+  transition: all 0.3s ease-in-out;
+}
+
+.button:hover {
+  transform: scale(1.2);
+}
+
+#footprint {
+	background-color: #fff; /* white background color */
+	color: #333; /* dark text color */
+	padding: 50px;
+}
+
+h2 {
+	font-size: 36px;
+	color: #0077cc; /* blue color */
+	margin-bottom: 20px;
+    
+  }
+  
+
+    </style>
+</head>
+<body>
+    <div id="map">
+        <div class="leaflet-control coordinate"></div>
+    </div>
+      
+    <br>
+    <section id="footprint">
+        <h2>Footprint</h2>
+        <div class="container_con cont">
+            <div class="energy_foot">
+                <img src="https://th.bing.com/th/id/R.073ee86f3dcf66996295668c8700b5d5?rik=%2bJjUru8fkJwsqg&riu=http%3a%2f%2fwww.maineenergysystems.com%2fwp-content%2fuploads%2f2015%2f04%2ficon-thermostat.png&ehk=emktQqmzN7L20NdVoQLFN55IYUHZuWMXJFV3IcmCnZ0%3d&risl=&pid=ImgRaw&r=0" alt="">
+                <h3> Energy Footprint</h3>
+                <h3>500</h3>
+            </div>
+            <div class="fuel_save cont">
+                <img src="https://cdn4.iconfinder.com/data/icons/environment-13/24/Eco_Fuel-512.png" alt="">
+                <h3>Fuel Saving</h3>
+                <h3>1.76L</h3>
+            </div>
+            <div class="amount_save cont">
+                <img src="https://th.bing.com/th/id/OIP.adQpGLh5gc1hvQ7K5I2RpAHaHa?pid=ImgDet&rs=1" alt="">
+                <h3>Amount Saved</h3>
+                <h3>Rs 750</h3>
+            </div>
+    </div>
+    </section>
+    
+    <!-- Search boxes -->
+    <!-- <div class="leaflet-control-geocoder leaflet-bar leaflet-control">
+        <input type="text" id="origin-input" placeholder="Enter starting point">
+        <input type="text" id="destination-input" placeholder="Enter destination">
+    </div> -->
+</body>
+</html>
+
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+
+<script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+<script>
+    // Map Tilelayer
+    var map = L.map('map').setView([23.2114, 72.6842], 13);
+
+    var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    });
+    osm.addTo(map)
+
+    // Marker
+    var myIcon = L.icon({
+    iconUrl: 'black_marker.png',
+    iconSize: [40, 40],
+});
+
+L.marker([23.2114, 72.6842], {icon: myIcon}).addTo(map);
+
+// Routing control
+var routingControl = L.Routing.control({
+    waypoints: [],
+    routeWhileDragging: true,
+    geocoder: L.Control.Geocoder.nominatim(),
+    router: L.Routing.osrmv1({
+        language: 'en',
+        profile: 'car'
+    })
+}).addTo(map);
+
+// Geocoding and routing
+</script>
+
+<script src="https://sheetdb.io/s/f/vmg4det386uje.js"></script>
+
+<a href="https://docs.google.com/spreadsheets/d/1r6qVE4-Xng2tAA9qAmtm_-B3h8z6OwQY2g-kSm-dQTI/edit#gid=919682108" class="button">Data 1</a>
+<a href="https://docs.google.com/spreadsheets/d/1IJpDD_TfRXpHbUULZFmKAc9zmt9N2nl5oUHPKh8yQyc/edit#gid=963475894" class="button">Data 2</a>
+
+
+
